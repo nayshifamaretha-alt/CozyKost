@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -9,6 +10,7 @@
     <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700,800&display=swap" rel="stylesheet" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <style>
         * { font-family: 'Poppins', sans-serif; }
         html { scroll-behavior: smooth; }
@@ -25,21 +27,24 @@
             background-size: 200% 200%;
             animation: meshMove 15s ease-in-out infinite;
         }
+
         @keyframes meshMove {
             0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%; }
             50% { background-position: 50% 50%, 50% 50%, 0% 50%; }
         }
+
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         .fade-up { animation: fadeUp 0.7s ease both; }
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
 
-        /* Muncul pelan saat di-scroll */
         .reveal-hidden { opacity: 0; transform: translateY(24px); }
+
         .reveal-show {
             opacity: 1;
             transform: translateY(0);
@@ -47,6 +52,7 @@
         }
 
         .card-hover { transition: all 0.3s ease; }
+
         .card-hover:hover {
             transform: translateY(-4px);
             background: rgba(255, 255, 255, 0.08);
@@ -54,6 +60,7 @@
         }
     </style>
 </head>
+
 <body class="antialiased min-h-screen text-white">
 
 <div class="mesh-bg"></div>
@@ -63,15 +70,25 @@
     {{-- Header --}}
     <header class="w-full max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
         <span class="text-xl font-bold">CozyKost.id</span>
+
         <nav class="flex items-center gap-3">
             <a href="#fitur" class="hidden md:inline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition">Fitur</a>
             <a href="#cara-kerja" class="hidden md:inline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition">Cara Kerja</a>
+
+            {{-- Tombol Masuk selalu terlihat --}}
+            <a href="{{ route('login') }}" class="px-5 py-2 text-sm font-medium text-slate-300 hover:text-white transition">
+                Masuk
+            </a>
+
             @auth
-                <a href="{{ route('dashboard') }}" class="px-5 py-2 rounded-full bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition">Ke Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="px-5 py-2 rounded-full bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition">
+                    Ke Dashboard
+                </a>
             @else
-                <a href="{{ route('login') }}" class="px-5 py-2 text-sm font-medium text-slate-300 hover:text-white transition">Masuk</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="px-5 py-2 rounded-full bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition">Daftar</a>
+                    <a href="{{ route('register') }}" class="px-5 py-2 rounded-full bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition">
+                        Daftar
+                    </a>
                 @endif
             @endauth
         </nav>
@@ -94,13 +111,22 @@
                 Satu platform untuk pemilik, admin, dan penghuni. Kamar, tagihan, pembayaran, dan komplain semua dalam satu tempat.
             </p>
 
-            <div class="fade-up delay-2 mt-8 flex items-center justify-center gap-3">
+            <div class="fade-up delay-2 mt-8 flex items-center justify-center gap-3 flex-wrap">
+
+                {{-- Tombol Masuk selalu terlihat --}}
+                <a href="{{ route('login') }}" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">
+                    Masuk Sekarang
+                </a>
+
                 @auth
-                    <a href="{{ route('dashboard') }}" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">Ke Dashboard</a>
+                    <a href="{{ route('dashboard') }}" class="px-7 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition">
+                        Ke Dashboard
+                    </a>
                 @else
-                    <a href="{{ route('login') }}" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">Masuk Sekarang</a>
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="px-7 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition">Buat Akun</a>
+                        <a href="{{ route('register') }}" class="px-7 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition">
+                            Buat Akun
+                        </a>
                     @endif
                 @endauth
             </div>
@@ -111,10 +137,12 @@
                     <p class="font-semibold">Pemilik</p>
                     <p class="text-sm text-slate-400 mt-2">Kelola properti, kamar, penghuni, keuangan, dan pantau laporan pendapatan.</p>
                 </div>
+
                 <div class="card-hover rounded-3xl bg-white/5 border border-white/10 p-6">
                     <p class="font-semibold">Admin</p>
                     <p class="text-sm text-slate-400 mt-2">Bantu operasional harian: verifikasi pembayaran dan tindak lanjut komplain.</p>
                 </div>
+
                 <div class="card-hover rounded-3xl bg-white/5 border border-white/10 p-6">
                     <p class="font-semibold">Penghuni</p>
                     <p class="text-sm text-slate-400 mt-2">Lihat tagihan, bayar langsung, dan ajukan komplain dari satu portal.</p>
@@ -218,13 +246,23 @@
             <div data-reveal class="rounded-[32px] bg-white/5 border border-white/10 px-8 py-14 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold">Siap kelola kost lebih rapi?</h2>
                 <p class="text-slate-400 mt-4 max-w-lg mx-auto">Masuk dan lihat semua data kostmu dalam satu dashboard.</p>
-                <div class="mt-8 flex items-center justify-center gap-3">
+
+                <div class="mt-8 flex items-center justify-center gap-3 flex-wrap">
+
+                    {{-- Tombol Masuk selalu terlihat --}}
+                    <a href="{{ route('login') }}" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">
+                        Masuk Sekarang
+                    </a>
+
                     @auth
-                        <a href="{{ route('dashboard') }}" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">Ke Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="px-7 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition">
+                            Ke Dashboard
+                        </a>
                     @else
-                        <a href="{{ route('login') }}" class="px-7 py-3 rounded-2xl bg-white text-slate-900 font-semibold hover:bg-slate-100 transition">Masuk Sekarang</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="px-7 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition">Buat Akun</a>
+                            <a href="{{ route('register') }}" class="px-7 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition">
+                                Buat Akun
+                            </a>
                         @endif
                     @endauth
                 </div>
