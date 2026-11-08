@@ -85,3 +85,14 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/_check-session-cookie', function () {
+    $file = null;
+    $line = null;
+
+    return response()->json([
+        'headers_sent' => headers_sent($file, $line),
+        'output_file' => $file,
+        'output_line' => $line,
+        'session_driver' => config('session.driver'),
+    ]);
+});
