@@ -8,6 +8,7 @@
         },
         "build": {
             "commands": [
+                "...",
                 "mkdir -p storage/app/public",
                 "ln -sfn /app/storage/app/public public/storage"
             ]
