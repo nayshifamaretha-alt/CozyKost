@@ -32,7 +32,9 @@ COPY --from=frontend /app/public/build ./public/build
 RUN mkdir -p storage/framework/cache \
     storage/framework/sessions \
     storage/framework/views \
+    storage/app/public \
     bootstrap/cache \
+    && ln -sfn /app/storage/app/public /app/public/storage \
     && chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8080
